@@ -26,7 +26,13 @@
   --weight-bold: 700;
   --weight-semi-bold: 600;
   --weight-regular: 400;
+
+  /* Size */
+  --size-border-radius: 4px;
 }
+
+
+
 
 /* Typography */
 
@@ -62,3 +68,53 @@ p {
 * {
   box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  cursor: default; /* text에 커서 올라갈 때  가늘어 지는 것 방지 */
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-pink);
+  align-items: center;
+  color: var(--color-white);
+  padding: 16px;
+}
+
+.navbar__logo {
+  font-size: var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+}
+.navbar__menu {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar__menu__item {
+  margin-right: 0 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: var(--size-border-radius);
+}
+
+.navbar__menu__item.active {
+  border: 1px solid var(--color-white);
+}
+
+.navbar__menu__item:hover {
+  background-color: var(--color-dark-pink);
+}
+
