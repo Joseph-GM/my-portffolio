@@ -100,10 +100,18 @@ button {
 #navbar {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-pink);
   align-items: center;
   color: var(--color-white);
   padding: 16px;
+  background-color: transparent;
+  position: fixed;
+  width: 100%;
+  transition: all var(--animation-duration) ease-in-out;
+}
+
+#navbar.navbar--dark {
+  background-color: var(--color-pink);
+  padding: 8px;
 }
 
 .navbar__logo {
@@ -143,6 +151,7 @@ button {
 #home {
   background: url("../imgs/home/home-background.png") center/cover no-repeat;
   padding: 40px;
+  padding-top: 120px;
   text-align: center;
 }
 
