@@ -491,7 +491,13 @@ button {
   right: 20px;
   font-size: var(--font-large);
   color: var(--color-dark-pink);
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--animation-duration) ease-in;
+}
+.upButton.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* for below 768px screen width */

@@ -26,9 +26,9 @@ document.addEventListener('scroll', () => {
 
     //Show upbutton with scroll down
     if (window.scrollY > homeHeight/2) {
-        upButton.style.display = 'block';
+        upButton.classList.add('visible');
     } else {
-        upButton.style.display = 'none';
+        upButton.classList.remove('visible');
     }
 })
 
