@@ -45,10 +45,10 @@ function onNavBarMenuClick(event) {
         return;
     };
 
-    for (let i = 0; i < navbarMenu.children.length; i++) {
-        navbarMenu.children[i].classList.remove('active');
-    }
-    event.target.classList.add('active');
+    // for (let i = 0; i < navbarMenu.children.length; i++) {
+    //     navbarMenu.children[i].classList.remove('active');
+    // }
+    // event.target.classList.add('active');
 
 
     scrollToTarget(key);
@@ -79,6 +79,12 @@ workBtnContainer.addEventListener('click', (event)=>{
     if (filter == null) {
         return
     }
+
+    //Remove selection from the previous item and select new one
+    const active = document.querySelector('.category__btn.selected');
+    active.classList.remove('selected');
+    const target = event.target.nodeName === 'BUTTON' ? event.target : event.target.parentNode;
+    event.target.classList.add('selected');
 
     projectContainer.classList.add('anim-out');
 
