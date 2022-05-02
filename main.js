@@ -12,3 +12,33 @@ document.addEventListener('scroll', () => {
         navbar.classList.remove('navbar--dark')
     }
 })
+
+// NavBar Button Action by Joe
+const navbarMenu = document.querySelector('.navbar__menu');
+
+navbarMenu.addEventListener('click', (event) => onNavBarMenuClick(event));
+
+function onNavBarMenuClick(event) {
+    const dataset = event.target.dataset;
+    const key = dataset.key;
+    
+    if (key == null) {
+        return;
+    };
+
+    for (let i = 0; i < navbarMenu.children.length; i++) {
+        navbarMenu.children[i].classList.remove('active');
+    }
+    event.target.classList.add('active');
+
+    const elem = document.getElementById(`${key}`)
+    elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+}
+
+//Contact Button Action by Joe
+const contact = document.querySelector('.home__contact');
+contact.addEventListener('click', () =>{
+    console.log('contact button clicked()')
+    const elem = document.getElementById('contact');
+    elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+})
