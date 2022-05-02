@@ -71,16 +71,29 @@ upButton.addEventListener('click', () => {
 //Project Button action
 const workBtnContainer = document.querySelector('.work__categories');
 const projectContainer = document.querySelector('.work__projects');
-const projects = document.querySelectorAll('.project');
+const projects = document.querySelectorAll('.project');//배열로 받ㅏ 오기
 
 workBtnContainer.addEventListener('click', (event)=>{
-    const dataset = event.target.dataset;
-    const filter = dataset.filter;
+    //span 부분 클릭했을 때 console.log에 안나타남, 없을 때 parent node에 있는 filter값 가지고 오기
+    const filter = event.target.dataset.filter || event.target.parentNode.dataset.filter;
     if (filter == null) {
         return
     }
-    console.log(filter);
-})
+
+    projectContainer.classList.add('anim-out');
+
+    setTimeout(() => {
+        projects.forEach((project) => {
+            if(filter === '*' || filter === project.dataset.type){
+                project.classList.remove('invisible');
+            } else {
+                project.classList.add('invisible');
+            }
+        });
+        projectContainer.classList.remove('anim-out');
+    }, 300)
+});
+
 
 // Funntion for scroll to target by sector
 function scrollToTarget(seletor) {
