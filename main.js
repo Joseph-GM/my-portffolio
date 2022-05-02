@@ -31,14 +31,21 @@ function onNavBarMenuClick(event) {
     }
     event.target.classList.add('active');
 
-    const elem = document.getElementById(`${key}`)
-    elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+
+    scrollToTarget(key);
+    // const elem = document.getElementById(`${key}`)
+    // elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
 
 //Contact Button Action by Joe
 const contact = document.querySelector('.home__contact');
 contact.addEventListener('click', () =>{
     console.log('contact button clicked()')
-    const elem = document.getElementById('contact');
-    elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    scrollToTarget('contact');
 })
+
+// Funntion for scroll to target by sector
+function scrollToTarget(seletor) {
+    const elem = document.getElementById(seletor);
+    elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+}
