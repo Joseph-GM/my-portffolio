@@ -3,6 +3,9 @@
 // Make navbar transparent when it is on the top
 const navbar = document.querySelector('#navbar');
 const navbarHeight = navbar.getBoundingClientRect().height;
+const homeContainer = document.querySelector('.home__container');
+const homeHeight = homeContainer.getBoundingClientRect().height;
+
 document.addEventListener('scroll', () => {
     // console.log(window.scrollY);
     // console.log(`navbarHeight: ${navbarHeight} `);
@@ -10,6 +13,12 @@ document.addEventListener('scroll', () => {
         navbar.classList.add('navbar--dark');
     } else {
         navbar.classList.remove('navbar--dark')
+    }
+    if (window.scrollY < homeHeight) {
+        // console.log(`scrollY: ${window.scrollY}, homeHeight:${homeHeight}`);
+        const homeOpacity = 1.0 - (window.scrollY / homeHeight);
+        // console.log(`opacity value: ${homeOpacity}`);
+        homeContainer.style.opacity = homeOpacity;
     }
 })
 
