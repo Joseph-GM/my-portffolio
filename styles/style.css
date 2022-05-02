@@ -485,6 +485,15 @@ button {
   color: var(--color-yellow);
 }
 
+.upButton{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: var(--font-large);
+  color: var(--color-dark-pink);
+  display: none;
+}
+
 /* for below 768px screen width */
 @media screen and (max-width: 768px) {
   .navbar__toggle-btn{

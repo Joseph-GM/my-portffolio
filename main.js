@@ -5,6 +5,7 @@ const navbar = document.querySelector('#navbar');
 const navbarHeight = navbar.getBoundingClientRect().height;
 const homeContainer = document.querySelector('.home__container');
 const homeHeight = homeContainer.getBoundingClientRect().height;
+const upButton = document.querySelector('.upButton');
 
 document.addEventListener('scroll', () => {
     // console.log(window.scrollY);
@@ -14,11 +15,20 @@ document.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('navbar--dark')
     }
+    
+    //Change home item opacit with scroll
     if (window.scrollY < homeHeight) {
         // console.log(`scrollY: ${window.scrollY}, homeHeight:${homeHeight}`);
         const homeOpacity = 1.0 - (window.scrollY / homeHeight);
         // console.log(`opacity value: ${homeOpacity}`);
         homeContainer.style.opacity = homeOpacity;
+    }
+
+    //Show upbutton with scroll down
+    if (window.scrollY > homeHeight/2) {
+        upButton.style.display = 'block';
+    } else {
+        upButton.style.display = 'none';
     }
 })
 
@@ -51,6 +61,11 @@ const contact = document.querySelector('.home__contact');
 contact.addEventListener('click', () =>{
     console.log('contact button clicked()')
     scrollToTarget('contact');
+})
+
+// Action for upButton
+upButton.addEventListener('click', () => {
+    scrollToTarget('home');
 })
 
 // Funntion for scroll to target by sector
