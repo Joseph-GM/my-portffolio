@@ -68,6 +68,20 @@ upButton.addEventListener('click', () => {
     scrollToTarget('home');
 })
 
+//Project Button action
+const workBtnContainer = document.querySelector('.work__categories');
+const projectContainer = document.querySelector('.work__projects');
+const projects = document.querySelectorAll('.project');
+
+workBtnContainer.addEventListener('click', (event)=>{
+    const dataset = event.target.dataset;
+    const filter = dataset.filter;
+    if (filter == null) {
+        return
+    }
+    console.log(filter);
+})
+
 // Funntion for scroll to target by sector
 function scrollToTarget(seletor) {
     const elem = document.getElementById(seletor);
