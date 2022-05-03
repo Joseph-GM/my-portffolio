@@ -45,6 +45,7 @@ function onNavBarMenuClick(event) {
         return;
     };
 
+    navbarMenu.classList.remove('visible');
     // for (let i = 0; i < navbarMenu.children.length; i++) {
     //     navbarMenu.children[i].classList.remove('active');
     // }
@@ -55,6 +56,13 @@ function onNavBarMenuClick(event) {
     // const elem = document.getElementById(`${key}`)
     // elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
+
+//Navbar toggle button action
+const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
+navbarToggleBtn.addEventListener('click', ()=>{
+    console.log('toggle btn clicked')
+    navbarMenu.classList.toggle('visible');
+})
 
 //Contact Button Action by Joe
 const contact = document.querySelector('.home__contact');

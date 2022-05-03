@@ -410,18 +410,18 @@ button {
 }
 
 .project__description h3 {
-  color: var(--color-white);
+  color: var(--color-orange);
 }
 
 .project__description h3:after {
   content: '';
-  width: 25px;
+  width: 50px;
   height: 2px;
+  transform: translateX(-50%);
   background-color: var(--color-dark-white);
   display: block;
   position: relative;
   left: 50%;
-  margin-left: -12px;
   margin-top: 8px;
 }
 
@@ -520,12 +520,20 @@ button {
   #navbar {
     flex-direction: column;
     align-items: flex-start;
+    background-color: var(--color-pink);
+  }
+  #navbar.navbar--dark {
+    background-color: var(--color-pink);
+    padding: 16px;
   }
   .navbar__menu {
     flex-direction: column;
     text-align: center;
     width: 100%;
     display: none;
+  }
+  .navbar__menu.visible{
+    display: block;
   }
   .about__majors {
     flex-direction: column;
