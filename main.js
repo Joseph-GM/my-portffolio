@@ -39,6 +39,7 @@ navbarMenu.addEventListener('click', (event) => onNavBarMenuClick(event));
 
 function onNavBarMenuClick(event) {
     const dataset = event.target.dataset;
+    const target = event.target
     const key = dataset.key;
     
     if (key == null) {
@@ -53,6 +54,7 @@ function onNavBarMenuClick(event) {
 
 
     scrollToTarget(key);
+    selectNavItem(target);
     // const elem = document.getElementById(`${key}`)
     // elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
@@ -60,7 +62,6 @@ function onNavBarMenuClick(event) {
 //Navbar toggle button action
 const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
 navbarToggleBtn.addEventListener('click', ()=>{
-    console.log('toggle btn clicked')
     navbarMenu.classList.toggle('visible');
 })
 
@@ -107,6 +108,95 @@ workBtnContainer.addEventListener('click', (event)=>{
         projectContainer.classList.remove('anim-out');
     }, 300)
 });
+
+//Set scrolled navbar color to pink by Joe
+// const sections = document.querySelectorAll("section");
+// const options = {
+//     rootMargin: '30px',
+//     threshold: 0.7,
+//   };
+
+// const navbarArray = document.querySelectorAll('.navbar__menu__item');  
+// const observerCallback = (entries, observers) => {
+//     const active = document.querySelector('.navbar__menu__item.active');
+//     if (active == null) {return}
+//     active.classList.remove('active');
+//     let selector = '';
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting || entry.intersectionRatio > 0.5) {
+//             console.log(`${entry.target.id}`);
+//             selector = entry.target.id;
+//         }
+//     });
+//     navbarArray.forEach(item => {
+//         if(selector === item.dataset.key) {
+//             item.classList.add('active');
+//             console.log(`active added to ${selector}`)
+//         }
+//     })
+// };
+
+// const observer = new IntersectionObserver(observerCallback, options);
+// sections.forEach(section => observer.observe(section));
+
+//Ellie instruction for navbar action
+const sectionIds = [
+    'home',
+    'about',
+    'skills',
+    'work',
+    'testimonials',
+    'contact'
+]
+
+const sections = sectionIds.map(id => document.querySelector(`#${id}`))
+const navItems = sectionIds.map(id => document.querySelector(`[data-key="${id}"]`))
+
+let selectedNavItem = navItems[0];
+let selectNavIndex;
+function selectNavItem(selected) {
+    selectedNavItem.classList.remove('active');
+    selectedNavItem = selected;
+    selectedNavItem.classList.add('active');
+}
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.3,
+}
+
+const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+        if(!entry.isIntersecting && entry.intersectionRatio > 0) {
+            const index = sectionIds.indexOf(entry.target.id);
+            if(entry.boundingClientRect.y < 0) {
+                selectNavIndex = index + 1;
+            } else {
+                selectNavIndex = index - 1;
+            }
+            selectNavItem(navItems[selectNavIndex]);
+        }
+    });
+}
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+sections.forEach(section => observer.observe(section));
+
+window.addEventListener('wheel', ()=> {
+    console.log(`scrollY+innerHeight : ${window.scrollY + window.innerHeight}, document.body: ${document.body.clientHeight}`);
+    if (window.scrollY === 0 ) {
+        selectNavIndex = 0;
+        // console.log(`seclectNavIndex : ${selectNavIndex}`);
+    } else if (
+        Math.abs( (window.scrollY + window.innerHeight) - (document.body.clientHeight)) < 1.0
+    ) {
+        selectNavIndex = navItems.length - 1;
+        // console.log(`seclectNavIndex : ${selectNavIndex}`);
+    }
+    selectNavItem(navItems[selectNavIndex]);
+})
+
 
 
 // Funntion for scroll to target by sector
