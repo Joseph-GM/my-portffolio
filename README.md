@@ -1,6 +1,7 @@
 # My portfolio Clone Coding
 ## Purpose
 This is for building my portfolio web. I followed dream-coding academy.
+[Dream Coding](https://academy.dream-coding.com/, "dream coding academy link")
 ## What I use
 HTML/CSS/Javascrip
 ## Initail screen
