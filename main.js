@@ -54,7 +54,6 @@ function onNavBarMenuClick(event) {
 
 
     scrollToTarget(key);
-    selectNavItem(target);
     // const elem = document.getElementById(`${key}`)
     // elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
@@ -67,7 +66,7 @@ navbarToggleBtn.addEventListener('click', ()=>{
 
 //Contact Button Action by Joe
 const contact = document.querySelector('.home__contact');
-contact.addEventListener('click', () =>{
+contact.addEventListener('click', () => {
     console.log('contact button clicked()')
     scrollToTarget('contact');
 })
@@ -154,11 +153,6 @@ const navItems = sectionIds.map(id => document.querySelector(`[data-key="${id}"]
 
 let selectedNavItem = navItems[0];
 let selectNavIndex;
-function selectNavItem(selected) {
-    selectedNavItem.classList.remove('active');
-    selectedNavItem = selected;
-    selectedNavItem.classList.add('active');
-}
 
 const observerOptions = {
     root: null,
@@ -183,8 +177,8 @@ const observerCallback = (entries, observer) => {
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach(section => observer.observe(section));
 
-window.addEventListener('wheel', ()=> {
-    console.log(`scrollY+innerHeight : ${window.scrollY + window.innerHeight}, document.body: ${document.body.clientHeight}`);
+window.addEventListener('scroll', ()=> {
+    // console.log(`scrollY+innerHeight : ${window.scrollY + window.innerHeight}, document.body: ${document.body.clientHeight}`);
     if (window.scrollY === 0 ) {
         selectNavIndex = 0;
         // console.log(`seclectNavIndex : ${selectNavIndex}`);
@@ -197,10 +191,15 @@ window.addEventListener('wheel', ()=> {
     selectNavItem(navItems[selectNavIndex]);
 })
 
-
+function selectNavItem(selected) {
+    selectedNavItem.classList.remove('active');
+    selectedNavItem = selected;
+    selectedNavItem.classList.add('active');
+}
 
 // Funntion for scroll to target by sector
 function scrollToTarget(seletor) {
     const elem = document.getElementById(seletor);
     elem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    selectNavItem(navItems[sectionIds.indexOf(seletor)]);
 }
